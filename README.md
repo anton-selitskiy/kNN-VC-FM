@@ -106,9 +106,7 @@ plus two reproducible evaluators added for the paper results:
   summary statistics.
 
 Both evaluators report the sample standard deviation and a two-sided 95%
-Student-t confidence interval across utterances. Installation requirements,
-method-directory mappings, and complete example commands are documented in
-[`evaluation/README_metrics.md`](evaluation/README_metrics.md).
+Student-t confidence interval across utterances.
 
 ### Tracked evaluation outputs
 
@@ -119,51 +117,3 @@ method-directory mappings, and complete example commands are documented in
   per-pair UTMOSv2 scores.
 - `outputs/seed_tts_ssim/run_metadata_source.json` records the source-reference
   similarity run configuration.
-
-Large reusable embedding caches and local smoke-test outputs are intentionally
-not part of the tracked result set.
-
-## Project page
-
-The academic project page presents the method, five matched listening examples,
-and the paper comparison metrics. It is configured to publish at
-[anton-selitskiy.github.io/kNN-VC-FM](https://anton-selitskiy.github.io/kNN-VC-FM/)
-through the GitHub Pages workflow.
-
-Run it locally with:
-
-```bash
-make site-serve
-```
-
-Then open <http://localhost:8000>.
-
-Rebuild the curated audio bundle from a complete evaluation-audio directory:
-
-```bash
-make site-audio EVAL_ROOT=/path/to/eval
-```
-
-Run the inexpensive static-page checks with:
-
-```bash
-make site-check
-```
-
-The listening bundle includes source and target references plus outputs for all
-displayed proposed methods and baselines. MeanVC and the unexpanded Phoneme
-Hallucinator output are intentionally excluded.
-
-Audio for the baseline systems was generated with the evaluation or conversion
-code provided by each baseline implementation, then copied into this repository
-for the curated project-page comparisons. The website serves those collected
-outputs directly; it does not re-synthesize the baselines in the browser.
-
-## Reproducibility status
-
-The evaluation scripts and their tracked outputs preserve substantially more
-provenance than the original repository. Full end-to-end reproduction still
-requires external model checkpoints, the complete converted-audio tree, and
-the exact inference code/configuration used for every probability path and
-solver-step setting. Do not treat the website audio bundle as a replacement for
-the full evaluation corpus.
