@@ -1,0 +1,26 @@
+{
+  "metric": "SEED-TTS WavLM-Large speaker-verification cosine",
+  "checkpoint": "/Users/davidmillard/Documents/Codex/2026-09-21/referenced-chatgpt-conversation-this-is-an-2/work/wavlm_large_finetune.pth",
+  "reference": "paired source utterance",
+  "methods": [
+    "our_SB_1",
+    "our_SB_5",
+    "our_SB",
+    "our_1",
+    "our_5",
+    "our",
+    "our_no_reg_1",
+    "our_no_reg_5",
+    "our_no_reg",
+    "kNN",
+    "kDOT",
+    "MKL",
+    "FreeVC",
+    "PhH_exp"
+  ],
+  "sample_rate_hz": 16000,
+  "batching": "only exactly equal-length waveforms",
+  "batch_size": 8,
+  "device": "cpu",
+  "ci": "two-sided Student-t 95% CI across utterance scores"
+}
