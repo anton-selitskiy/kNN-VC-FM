@@ -33,6 +33,10 @@ preprocessing.py                  LibriSpeech-to-WavLM feature extraction
 evaluation/                       WER, FAD, speaker-similarity, and UTMOS utilities
 evaluation/results/               Tracked metric summaries and per-pair outputs
 outputs/                           Tracked run manifests and selected raw results
+scripts/prepare_project_page_audio.py
+                                  Curates the website listening examples
+dist/                              Static project page and bundled comparison audio
+.github/workflows/pages.yml        GitHub Pages deployment workflow
 ```
 
 ## Environment
@@ -118,6 +122,42 @@ method-directory mappings, and complete example commands are documented in
 
 Large reusable embedding caches and local smoke-test outputs are intentionally
 not part of the tracked result set.
+
+## Project page
+
+The academic project page presents the method, five matched listening examples,
+and the paper comparison metrics. It is configured to publish at
+[anton-selitskiy.github.io/kNN-VC-FM](https://anton-selitskiy.github.io/kNN-VC-FM/)
+through the GitHub Pages workflow.
+
+Run it locally with:
+
+```bash
+make site-serve
+```
+
+Then open <http://localhost:8000>.
+
+Rebuild the curated audio bundle from a complete evaluation-audio directory:
+
+```bash
+make site-audio EVAL_ROOT=/path/to/eval
+```
+
+Run the inexpensive static-page checks with:
+
+```bash
+make site-check
+```
+
+The listening bundle includes source and target references plus outputs for all
+displayed proposed methods and baselines. MeanVC and the unexpanded Phoneme
+Hallucinator output are intentionally excluded.
+
+Audio for the baseline systems was generated with the evaluation or conversion
+code provided by each baseline implementation, then copied into this repository
+for the curated project-page comparisons. The website serves those collected
+outputs directly; it does not re-synthesize the baselines in the browser.
 
 ## Reproducibility status
 

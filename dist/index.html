@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Project page for One-Step Voice Conversion by Learning kNN Transport in WavLM Space." />
+    <meta name="citation_title" content="One-Step Voice Conversion by Learning kNN Transport in WavLM Space" />
+    <meta name="citation_author" content="Anton Selitskiy" />
+    <meta name="citation_author" content="David Millard" />
+    <title>One-Step Voice Conversion by Learning kNN Transport in WavLM Space</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+
+    <main id="content">
+      <section class="paper-header section-narrow">
+        <h1>One-Step Voice Conversion by Learning kNN Transport in WavLM Space</h1>
+        <div class="authors" aria-label="Authors">
+          <span>Anton Selitskiy</span>
+          <span>and</span>
+          <span>David Millard</span>
+        </div>
+        <div class="affiliations">
+          <span>Stony Brook University</span>
+          <span>University of Rochester</span>
+        </div>
+        <div class="link-row">
+          <a class="paper-link" href="https://github.com/anton-selitskiy/kNN-VC-FM" aria-label="Open source code">
+            <span class="link-icon" aria-hidden="true">&lt;/&gt;</span><span>Code</span>
+          </a>
+          <a class="paper-link" href="#audio" aria-label="Go to audio comparisons">
+            <span class="link-icon" aria-hidden="true">▶</span><span>Audio</span>
+          </a>
+          <a class="paper-link" href="#results" aria-label="Go to quantitative results">
+            <span class="link-icon" aria-hidden="true">▤</span><span>Results</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="section-wide overview-figure" aria-label="Method overview">
+        <div class="pipeline">
+          <div class="pipeline-node">
+            <span class="node-label">Source speech</span>
+            <strong>WavLM frames</strong>
+            <small>x ∈ ℝ<sup>T×1024</sup></small>
+          </div>
+          <span class="arrow" aria-hidden="true">→</span>
+          <div class="pipeline-node accent-node">
+            <span class="node-label">Conditional flow</span>
+            <strong>Cross-attention + FiLM</strong>
+            <small>v<sub>θ</sub>(y<sub>t</sub>, t, z)</small>
+          </div>
+          <span class="arrow" aria-hidden="true">→</span>
+          <div class="pipeline-node">
+            <span class="node-label">Converted speech</span>
+            <strong>Vocoder output</strong>
+            <small>1, 5, or 50 steps</small>
+          </div>
+          <div class="conditioning-node">
+            <span class="condition-line" aria-hidden="true">↑</span>
+            <span class="node-label">Target-speaker utterance</span>
+            <strong>z</strong>
+          </div>
+        </div>
+        <p class="figure-caption">
+          The model learns a velocity field between source WavLM embeddings and
+          kNN-derived target endpoints while conditioning on a target-speaker utterance.
+        </p>
+      </section>
+
+      <section class="content-section section-narrow" id="abstract">
+        <h2>Abstract</h2>
+        <p>
+          Voice conversion (VC) systems fall into two families: non-parametric
+          embedding-space methods, which need no trained model but degrade on short
+          target utterances, and spectrogram-based neural architectures, which achieve
+          strong quality via multi-module pipelines with tens of millions of parameters.
+          We propose <em>k</em>NN-FM-VC, a single conditional flow-matching network that
+          learns to approximate the <em>k</em>NN-VC mapping between WavLM embedding
+          distributions of source and target speakers, replacing explicit pointwise
+          <em>k</em>NN matching with a neural regressor trained on <em>k</em>NN-generated
+          pairs. The model is conditioned on the target speaker via cross-attention and
+          FiLM, and trained under three Gaussian conditional paths (Schrödinger bridge,
+          straight line, and constant-variance Gaussian tube), enabling few-step
+          sampling. Unlike Phoneme Hallucinator, which uses an upsampling stage followed
+          by kNN matching, our 13M-parameter model performs conversion with a single
+          learned network and supports one-step inference. On LibriSpeech, the one-step
+          Gaussian Bridge achieves lower WER and higher estimated speech quality than
+          FreeVC and Phoneme Hallucinator. Relative to <em>k</em>NN and <em>k</em>DOT, it
+          substantially reduces WER. We encourage readers to listen to the output.
+        </p>
+      </section>
+
+      <section class="content-section section-wide" id="method">
+        <h2>Method</h2>
+        <div class="method-columns">
+          <article>
+            <h3>kNN pseudo-pairs</h3>
+            <p>
+              Source and target WavLM frames are pooled across utterances. Each source
+              frame is paired with the mean of its four nearest target frames under
+              cosine similarity.
+            </p>
+          </article>
+          <article>
+            <h3>Target conditioning</h3>
+            <p>
+              Cross-attention uses the source sequence as queries and a target-speaker
+              sequence as keys and values. A masked temporal mean of the target sequence
+              is combined with time conditioning in the FiLM blocks.
+            </p>
+          </article>
+          <article>
+            <h3>Probability paths</h3>
+            <p>
+              Three conditional paths are evaluated at the same inference budgets:
+              Schrödinger Bridge, Gaussian Bridge, and Gaussian Tube, each sampled with
+              1, 5, or 50 integration steps.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="content-section section-wide" id="audio">
+        <h2>Audio comparisons</h2>
+        <p class="section-intro">
+          Each table uses the same source and target-speaker reference across methods.
+          Select one of the held-out conversion pairs.
+        </p>
+
+        <div class="example-tabs" id="example-tabs" role="tablist" aria-label="Listening examples"></div>
+
+        <div class="example-context" aria-live="polite">
+          <p class="pair-label" id="pair-label">Loading listening set…</p>
+          <p class="transcript" id="transcript"></p>
+        </div>
+
+        <div class="reference-row" id="reference-row"></div>
+        <div class="comparison-groups" id="comparison-groups"></div>
+      </section>
+
+      <section class="content-section results-section" id="results">
+        <div class="section-wide">
+          <h2>Quantitative results</h2>
+          <p class="section-intro">
+            Select a metric to compare the probability paths and baselines. Ranks compare
+            the reported mean.
+          </p>
+          <div class="metric-tabs" role="tablist" aria-label="Result metric">
+            <button type="button" role="tab" aria-selected="true" data-metric="wer">WER</button>
+            <button type="button" role="tab" aria-selected="false" data-metric="utmos">UTMOSv2</button>
+            <button type="button" role="tab" aria-selected="false" data-metric="fadSource">FAD<sub>s</sub></button>
+            <button type="button" role="tab" aria-selected="false" data-metric="fadTarget">FAD<sub>t</sub></button>
+            <button type="button" role="tab" aria-selected="false" data-metric="deltaFad">ΔFAD</button>
+            <button type="button" role="tab" aria-selected="false" data-metric="sourceSim">Source SIM</button>
+            <button type="button" role="tab" aria-selected="false" data-metric="targetSim">Target SIM</button>
+          </div>
+          <div class="chart-heading">
+            <h3 id="chart-title">Word error rate</h3>
+            <span id="chart-direction">Lower is better</span>
+          </div>
+          <div class="bar-chart" id="bar-chart" aria-live="polite"></div>
+          <div class="chart-legend" aria-label="Method groups">
+            <span><i class="legend-proposed"></i>Proposed</span>
+            <span><i class="legend-discrete"></i>Discrete</span>
+            <span><i class="legend-learned"></i>Learned baseline</span>
+          </div>
+          <p class="result-caption">
+            WER and SIM labels show mean and 95% confidence interval. UTMOSv2 labels
+            show mean ± sample standard deviation.
+          </p>
+        </div>
+      </section>
+
+    </main>
+
+    <script src="app.js" defer></script>
+  </body>
+</html>
