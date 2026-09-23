@@ -25,20 +25,20 @@ const groups = [
 ];
 
 const resultRows = [
-  { label: "SB · 1", group: "proposed", wer: [0.23, "0.23 [0.22, 0.24]"], utmos: [3.04, "3.04 ± 0.42"], fadSource: [0.85, "0.85"], fadTarget: [1.03, "1.03"], deltaFad: [0.18, "0.18"], sourceSim: [0.55, "0.55 [0.54, 0.56]"], targetSim: [0.30, "0.30 [0.29, 0.31]"] },
-  { label: "SB · 5", group: "proposed", wer: [0.23, "0.23 [0.22, 0.24]"], utmos: [3.11, "3.11 ± 0.43"], fadSource: [0.78, "0.78"], fadTarget: [0.96, "0.96"], deltaFad: [0.18, "0.18"], sourceSim: [0.64, "0.64 [0.63, 0.65]"], targetSim: [0.28, "0.28 [0.27, 0.28]"] },
-  { label: "SB · 50", group: "proposed", wer: [0.23, "0.23 [0.22, 0.24]"], utmos: [3.11, "3.11 ± 0.42"], fadSource: [0.75, "0.75"], fadTarget: [0.93, "0.93"], deltaFad: [0.18, "0.18"], sourceSim: [0.65, "0.65 [0.64, 0.66]"], targetSim: [0.27, "0.27 [0.26, 0.27]"] },
-  { label: "GB · 1", group: "proposed", wer: [0.23, "0.23 [0.23, 0.24]"], utmos: [3.12, "3.12 ± 0.37"], fadSource: [0.93, "0.93"], fadTarget: [1.07, "1.07"], deltaFad: [0.14, "0.14"], sourceSim: [0.55, "0.55 [0.54, 0.56]"], targetSim: [0.29, "0.29 [0.28, 0.30]"] },
-  { label: "GB · 5", group: "proposed", wer: [0.23, "0.23 [0.22, 0.24]"], utmos: [3.11, "3.11 ± 0.42"], fadSource: [0.81, "0.81"], fadTarget: [0.98, "0.98"], deltaFad: [0.17, "0.17"], sourceSim: [0.64, "0.64 [0.63, 0.65]"], targetSim: [0.27, "0.27 [0.26, 0.28]"] },
-  { label: "GB · 50", group: "proposed", wer: [0.23, "0.23 [0.22, 0.24]"], utmos: [3.10, "3.10 ± 0.43"], fadSource: [0.78, "0.78"], fadTarget: [0.95, "0.95"], deltaFad: [0.17, "0.17"], sourceSim: [0.65, "0.65 [0.65, 0.66]"], targetSim: [0.26, "0.26 [0.25, 0.27]"] },
-  { label: "Tube · 1", group: "proposed", wer: [0.23, "0.23 [0.22, 0.24]"], utmos: [3.08, "3.08 ± 0.38"], fadSource: [0.91, "0.91"], fadTarget: [1.04, "1.04"], deltaFad: [0.13, "0.13"], sourceSim: [0.55, "0.55 [0.54, 0.56]"], targetSim: [0.29, "0.29 [0.29, 0.30]"] },
-  { label: "Tube · 5", group: "proposed", wer: [0.23, "0.23 [0.22, 0.24]"], utmos: [3.09, "3.09 ± 0.40"], fadSource: [0.80, "0.80"], fadTarget: [0.96, "0.96"], deltaFad: [0.16, "0.16"], sourceSim: [0.64, "0.64 [0.63, 0.65]"], targetSim: [0.27, "0.27 [0.26, 0.27]"] },
-  { label: "Tube · 50", group: "proposed", wer: [0.23, "0.23 [0.22, 0.24]"], utmos: [3.12, "3.12 ± 0.42"], fadSource: [0.75, "0.75"], fadTarget: [0.92, "0.92"], deltaFad: [0.17, "0.17"], sourceSim: [0.66, "0.66 [0.65, 0.66]"], targetSim: [0.26, "0.26 [0.25, 0.26]"] },
-  { label: "kNN", group: "discrete", wer: [0.50, "0.50 [0.47, 0.53]"], utmos: [2.50, "2.50 ± 0.51"], fadSource: [1.22, "1.22"], fadTarget: [1.41, "1.41"], deltaFad: [0.19, "0.19"], sourceSim: [0.18, "0.18 [0.17, 0.18]"], targetSim: [0.48, "0.48 [0.47, 0.49]"] },
-  { label: "kDOT", group: "discrete", wer: [0.48, "0.48 [0.46, 0.50]"], utmos: [2.51, "2.51 ± 0.47"], fadSource: [1.12, "1.12"], fadTarget: [1.29, "1.29"], deltaFad: [0.17, "0.17"], sourceSim: [0.17, "0.17 [0.16, 0.17]"], targetSim: [0.51, "0.51 [0.50, 0.51]"] },
-  { label: "MKL", group: "discrete", wer: [0.72, "0.72 [0.61, 0.82]"], utmos: [2.36, "2.36 ± 0.64"], fadSource: [3.51, "3.51"], fadTarget: [3.70, "3.70"], deltaFad: [0.19, "0.19"], sourceSim: [0.28, "0.28 [0.27, 0.30]"], targetSim: [0.27, "0.27 [0.26, 0.28]"] },
-  { label: "FreeVC", group: "learned", wer: [0.24, "0.24 [0.23, 0.26]"], utmos: [2.86, "2.86 ± 0.39"], fadSource: [2.58, "2.58"], fadTarget: [2.80, "2.80"], deltaFad: [0.22, "0.22"], sourceSim: [0.31, "0.31 [0.30, 0.31]"], targetSim: [0.28, "0.28 [0.27, 0.29]"] },
-  { label: "Phoneme Hall.", group: "learned", wer: [0.25, "0.25 [0.24, 0.26]"], utmos: [2.86, "2.86 ± 0.43"], fadSource: [1.65, "1.65"], fadTarget: [1.79, "1.79"], deltaFad: [0.14, "0.14"], sourceSim: [0.34, "0.34 [0.33, 0.34]"], targetSim: [0.36, "0.36 [0.35, 0.37]"] },
+  { label: "SB · 1", group: "proposed", wer: [0.23, "0.23 [0.22, 0.24]"], utmos: [3.04, "3.04 ± 0.42"], fadSource: [0.85, "0.85"], fadTarget: [1.03, "1.03"], deltaFad: [21.2, "21.2%"], sourceSim: [0.55, "0.55 [0.54, 0.56]"], targetSim: [0.30, "0.30 [0.29, 0.31]"] },
+  { label: "SB · 5", group: "proposed", wer: [0.23, "0.23 [0.22, 0.24]"], utmos: [3.11, "3.11 ± 0.43"], fadSource: [0.78, "0.78"], fadTarget: [0.96, "0.96"], deltaFad: [23.1, "23.1%"], sourceSim: [0.64, "0.64 [0.63, 0.65]"], targetSim: [0.28, "0.28 [0.27, 0.28]"] },
+  { label: "SB · 50", group: "proposed", wer: [0.23, "0.23 [0.22, 0.24]"], utmos: [3.11, "3.11 ± 0.42"], fadSource: [0.75, "0.75"], fadTarget: [0.93, "0.93"], deltaFad: [24.0, "24.0%"], sourceSim: [0.65, "0.65 [0.64, 0.66]"], targetSim: [0.27, "0.27 [0.26, 0.27]"] },
+  { label: "GB · 1", group: "proposed", wer: [0.23, "0.23 [0.23, 0.24]"], utmos: [3.12, "3.12 ± 0.37"], fadSource: [0.93, "0.93"], fadTarget: [1.07, "1.07"], deltaFad: [15.1, "15.1%"], sourceSim: [0.55, "0.55 [0.54, 0.56]"], targetSim: [0.29, "0.29 [0.28, 0.30]"] },
+  { label: "GB · 5", group: "proposed", wer: [0.23, "0.23 [0.22, 0.24]"], utmos: [3.11, "3.11 ± 0.42"], fadSource: [0.81, "0.81"], fadTarget: [0.98, "0.98"], deltaFad: [21.0, "21.0%"], sourceSim: [0.64, "0.64 [0.63, 0.65]"], targetSim: [0.27, "0.27 [0.26, 0.28]"] },
+  { label: "GB · 50", group: "proposed", wer: [0.23, "0.23 [0.22, 0.24]"], utmos: [3.10, "3.10 ± 0.43"], fadSource: [0.78, "0.78"], fadTarget: [0.95, "0.95"], deltaFad: [21.8, "21.8%"], sourceSim: [0.65, "0.65 [0.65, 0.66]"], targetSim: [0.26, "0.26 [0.25, 0.27]"] },
+  { label: "Tube · 1", group: "proposed", wer: [0.23, "0.23 [0.22, 0.24]"], utmos: [3.08, "3.08 ± 0.38"], fadSource: [0.91, "0.91"], fadTarget: [1.04, "1.04"], deltaFad: [14.3, "14.3%"], sourceSim: [0.55, "0.55 [0.54, 0.56]"], targetSim: [0.29, "0.29 [0.29, 0.30]"] },
+  { label: "Tube · 5", group: "proposed", wer: [0.23, "0.23 [0.22, 0.24]"], utmos: [3.09, "3.09 ± 0.40"], fadSource: [0.80, "0.80"], fadTarget: [0.96, "0.96"], deltaFad: [20.0, "20.0%"], sourceSim: [0.64, "0.64 [0.63, 0.65]"], targetSim: [0.27, "0.27 [0.26, 0.27]"] },
+  { label: "Tube · 50", group: "proposed", wer: [0.23, "0.23 [0.22, 0.24]"], utmos: [3.12, "3.12 ± 0.42"], fadSource: [0.75, "0.75"], fadTarget: [0.92, "0.92"], deltaFad: [22.7, "22.7%"], sourceSim: [0.66, "0.66 [0.65, 0.66]"], targetSim: [0.26, "0.26 [0.25, 0.26]"] },
+  { label: "kNN", group: "discrete", wer: [0.50, "0.50 [0.47, 0.53]"], utmos: [2.50, "2.50 ± 0.51"], fadSource: [1.22, "1.22"], fadTarget: [1.41, "1.41"], deltaFad: [15.6, "15.6%"], sourceSim: [0.18, "0.18 [0.17, 0.18]"], targetSim: [0.48, "0.48 [0.47, 0.49]"] },
+  { label: "kDOT", group: "discrete", wer: [0.48, "0.48 [0.46, 0.50]"], utmos: [2.51, "2.51 ± 0.47"], fadSource: [1.12, "1.12"], fadTarget: [1.29, "1.29"], deltaFad: [15.2, "15.2%"], sourceSim: [0.17, "0.17 [0.16, 0.17]"], targetSim: [0.51, "0.51 [0.50, 0.51]"] },
+  { label: "MKL", group: "discrete", wer: [0.72, "0.72 [0.61, 0.82]"], utmos: [2.36, "2.36 ± 0.64"], fadSource: [3.51, "3.51"], fadTarget: [3.70, "3.70"], deltaFad: [5.4, "5.4%"], sourceSim: [0.28, "0.28 [0.27, 0.30]"], targetSim: [0.27, "0.27 [0.26, 0.28]"] },
+  { label: "FreeVC", group: "learned", wer: [0.24, "0.24 [0.23, 0.26]"], utmos: [2.86, "2.86 ± 0.39"], fadSource: [2.58, "2.58"], fadTarget: [2.80, "2.80"], deltaFad: [8.5, "8.5%"], sourceSim: [0.31, "0.31 [0.30, 0.31]"], targetSim: [0.28, "0.28 [0.27, 0.29]"] },
+  { label: "Phoneme Hall.", group: "learned", wer: [0.25, "0.25 [0.24, 0.26]"], utmos: [2.86, "2.86 ± 0.43"], fadSource: [1.65, "1.65"], fadTarget: [1.79, "1.79"], deltaFad: [8.5, "8.5%"], sourceSim: [0.34, "0.34 [0.33, 0.34]"], targetSim: [0.36, "0.36 [0.35, 0.37]"] },
 ];
 
 const metricMeta = {
@@ -46,7 +46,7 @@ const metricMeta = {
   utmos: { title: "UTMOSv2", direction: "Higher is better" },
   fadSource: { title: "FAD to source distribution", direction: "" },
   fadTarget: { title: "FAD to target distribution", direction: "" },
-  deltaFad: { title: "Target-relative FAD", direction: "Lower is better" },
+  deltaFad: { title: "Relative FAD gap", direction: "Higher is better" },
   sourceSim: { title: "Source-speaker similarity", direction: "Lower is better" },
   targetSim: { title: "Target-speaker similarity", direction: "Higher is better" },
 };
